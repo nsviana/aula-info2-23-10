@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exercícios de JavaScript</title>
+  <style>
+    :root { color-scheme: light; --ink:#172033; --muted:#647089; --paper:#f4f6fb; --line:#dce2ee; --blue:#3157d5; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
+    header { padding:54px max(24px,calc((100% - 1080px)/2)); color:white; background:linear-gradient(120deg,#172b69,#3157d5); }
+    header p { max-width:680px; margin:8px 0 0; color:#e0e8ff; }
+    h1 { margin:0; font-size:clamp(2rem,5vw,3.2rem); line-height:1.1; }
+    main { width:min(1080px,calc(100% - 32px)); margin:32px auto 64px; }
+    .intro { color:var(--muted); margin:0 0 24px; }
+    .exercise { margin:20px 0; padding:24px; border:1px solid var(--line); border-radius:16px; background:white; box-shadow:0 8px 28px #1c2c5010; }
+    .exercise h2 { margin:0 0 4px; font-size:1.35rem; }
+    .description { margin:0 0 18px; color:var(--muted); }
+    .columns { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .panel { min-width:0; overflow:hidden; border:1px solid var(--line); border-radius:10px; }
+    .panel h3 { margin:0; padding:9px 12px; background:#f7f8fc; border-bottom:1px solid var(--line); font-size:.9rem; }
+    pre { max-height:340px; min-height:180px; overflow:auto; margin:0; padding:14px; background:#101827; color:#e4ebfa; font:13px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace; white-space:pre-wrap; overflow-wrap:anywhere; }
+    iframe { display:block; width:100%; height:270px; border:0; background:white; }
+    .note { color:var(--muted); font-size:.88rem; margin:12px 0 0; }
+    footer { text-align:center; padding:0 16px 30px; color:var(--muted); font-size:.9rem; }
+    @media(max-width:720px) { header { padding:38px 22px; } .exercise { padding:17px; } .columns { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Exercícios de JavaScript</h1>
+    <p>Exemplos da aula com o código-fonte disponível e uma prévia interativa para executar cada exercício.</p>
+  </header>
+  <main>
+    <p class="intro">Os exemplos são carregados das pastas originais. Use os botões nas prévias para conferir o resultado.</p>
+
+    <section class="exercise" aria-labelledby="exemplo1-title">
+      <h2 id="exemplo1-title">1. Lista de cidades do Piauí</h2>
+      <p class="description">Percorre elementos da página: mostra o primeiro item em uma caixa de diálogo e lista todos no console.</p>
+      <div class="columns">
+        <div class="panel"><h3>HTML — exemplo1/index.html</h3><pre><code id="html-exemplo1">Carregando código…</code></pre></div>
+        <div class="panel"><h3>JavaScript — exemplo1/script.js</h3><pre><code id="js-exemplo1">Carregando código…</code></pre></div>
+        <div class="panel"><h3>Execução</h3><iframe title="Execução: lista de cidades" src="exemplo1/index.html"></iframe></div>
+        <div class="panel"><h3>Console</h3><p class="note" style="padding:0 12px">Clique em “Todos” e abra o console do navegador (F12) para ver a lista completa. “Clique aqui” mostra a primeira cidade.</p></div>
+      </div>
+    </section>
+
+    <section class="exercise" aria-labelledby="questao4-title">
+      <h2 id="questao4-title">2. Contagem de valores maiores que 10</h2>
+      <p class="description">Percorre um vetor, conta os valores maiores que 10 e apresenta o vetor e a contagem na página.</p>
+      <div class="columns">
+        <div class="panel"><h3>HTML — questao4/index.html</h3><pre><code id="html-questao4">Carregando código…</code></pre></div>
+        <div class="panel"><h3>JavaScript — questao4/script.js</h3><pre><code id="js-questao4">Carregando código…</code></pre></div>
+        <div class="panel"><h3>Execução</h3><iframe title="Execução: contagem no console" src="questao4/index.html"></iframe></div>
+      </div>
+    </section>
+
+    <section class="exercise" aria-labelledby="questao42-title">
+      <h2 id="questao42-title">3. Contagem exibida na página</h2>
+      <p class="description">Versão interativa: ao clicar, apresenta os números do vetor e quantos são maiores que 10.</p>
+      <div class="columns">
+        <div class="panel"><h3>HTML — questao4_2/index.html</h3><pre><code id="html-questao4_2">Carregando código…</code></pre></div>
+        <div class="panel"><h3>JavaScript — questao4_2/script.js</h3><pre><code id="js-questao4_2">Carregando código…</code></pre></div>
+        <div class="panel"><h3>Execução</h3><iframe title="Execução: contagem interativa" src="questao4_2/index.html"></iframe></div>
+      </div>
+    </section>
+  </main>
+  <footer>Material de apoio — HTML e JavaScript</footer>
+  <script>
+    const arquivos = {
+      'html-exemplo1': 'exemplo1/index.html', 'js-exemplo1': 'exemplo1/script.js',
+      'html-questao4': 'questao4/index.html', 'js-questao4': 'questao4/script.js',
+      'html-questao4_2': 'questao4_2/index.html', 'js-questao4_2': 'questao4_2/script.js'
+    };
+    for (const [id, caminho] of Object.entries(arquivos)) {
+      fetch(caminho).then(resposta => {
+        if (!resposta.ok) throw new Error('Arquivo não encontrado');
+        return resposta.text();
+      }).then(texto => { document.getElementById(id).textContent = texto.trim(); })
+        .catch(() => { document.getElementById(id).textContent = 'Não foi possível carregar o arquivo. Abra esta página por um servidor local para permitir a leitura dos códigos.'; });
+    }
+  </script>
+</body>
+</html>
