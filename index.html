@@ -38,8 +38,33 @@
       <h2 id="exemplo1-title">1. Lista de cidades do Piauí</h2>
       <p class="description">Percorre elementos da página: mostra o primeiro item em uma caixa de diálogo e lista todos no console.</p>
       <div class="columns">
-        <div class="panel"><h3>HTML — exemplo1/index.html</h3><pre><code id="html-exemplo1">Carregando código…</code></pre></div>
-        <div class="panel"><h3>JavaScript — exemplo1/script.js</h3><pre><code id="js-exemplo1">Carregando código…</code></pre></div>
+        <div class="panel"><h3>HTML — exemplo1/index.html</h3><pre><code>&lt;html&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Lista de Cidades do Piaui&lt;/h1&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Campo Maior&lt;/li&gt;&lt;li&gt;Piripiri&lt;/li&gt;&lt;li&gt;Picos&lt;/li&gt;
+    &lt;li&gt;Teresina&lt;/li&gt;&lt;li&gt;Floriano&lt;/li&gt;&lt;li&gt;Parnaiba&lt;/li&gt;
+    &lt;li&gt;Amarante&lt;/li&gt;&lt;li&gt;Floriano&lt;/li&gt;&lt;li&gt;Angical&lt;/li&gt;&lt;li&gt;Coivaras&lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;button onclick="mostrarValores()"&gt;Clique aqui&lt;/button&gt;
+  &lt;button onclick="mostrarTodosValores()"&gt;Todos&lt;/button&gt;
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+        <div class="panel"><h3>JavaScript — exemplo1/script.js</h3><pre><code>function mostrarValores(){
+  let resultado = document.querySelector("li");
+  alert(resultado.innerHTML);
+}
+
+function mostrarTodosValores(){
+  let resultado = document.querySelectorAll("li");
+  for(let i=0; i&lt;resultado.length; i++){
+    console.log(resultado[i].innerHTML);
+  }
+}</code></pre></div>
         <div class="panel"><h3>Execução</h3><iframe title="Execução: lista de cidades" src="exemplo1/index.html"></iframe></div>
         <div class="panel"><h3>Console</h3><p class="note" style="padding:0 12px">Clique em “Todos” e abra o console do navegador (F12) para ver a lista completa. “Clique aqui” mostra a primeira cidade.</p></div>
       </div>
@@ -49,8 +74,30 @@
       <h2 id="questao4-title">2. Contagem de valores maiores que 10</h2>
       <p class="description">Percorre um vetor, conta os valores maiores que 10 e apresenta o vetor e a contagem na página.</p>
       <div class="columns">
-        <div class="panel"><h3>HTML — questao4/index.html</h3><pre><code id="html-questao4">Carregando código…</code></pre></div>
-        <div class="panel"><h3>JavaScript — questao4/script.js</h3><pre><code id="js-questao4">Carregando código…</code></pre></div>
+        <div class="panel"><h3>HTML — questao4/index.html</h3><pre><code>&lt;!doctype html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1&gt;Contagem de valores maiores que 10&lt;/h1&gt;
+  &lt;p id="valores"&gt;&lt;/p&gt;
+  &lt;p id="resultado" aria-live="polite"&gt;&lt;/p&gt;
+  &lt;button type="button" onclick="mostrarValores()"&gt;Ver resultado&lt;/button&gt;
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+        <div class="panel"><h3>JavaScript — questao4/script.js</h3><pre><code>let numeros = [10, 12, 14, 7, 5, 11, 8, 20, 6];
+let contador = 0;
+
+for(let i=0; i&lt;numeros.length; i++){
+  if(numeros[i] &gt; 10){
+    contador = contador + 1;
+  }
+}
+
+document.getElementById("valores").textContent = "Valores: " + numeros.join(", ");
+document.getElementById("resultado").textContent = "Possui " + contador + " elementos maiores que 10.";
+console.log(numeros);
+console.log("Possui " + contador + " elementos maiores que 10");</code></pre></div>
         <div class="panel"><h3>Execução</h3><iframe title="Execução: contagem no console" src="questao4/index.html"></iframe></div>
       </div>
     </section>
@@ -59,26 +106,36 @@
       <h2 id="questao42-title">3. Contagem exibida na página</h2>
       <p class="description">Versão interativa: ao clicar, apresenta os números do vetor e quantos são maiores que 10.</p>
       <div class="columns">
-        <div class="panel"><h3>HTML — questao4_2/index.html</h3><pre><code id="html-questao4_2">Carregando código…</code></pre></div>
-        <div class="panel"><h3>JavaScript — questao4_2/script.js</h3><pre><code id="js-questao4_2">Carregando código…</code></pre></div>
+        <div class="panel"><h3>HTML — questao4_2/index.html</h3><pre><code>&lt;!doctype html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;&lt;meta charset="UTF-8"&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;p id="valores"&gt;&lt;/p&gt;
+  &lt;p id="resultado"&gt;&lt;/p&gt;
+  &lt;button onclick="mostrarValores()"&gt;Clique aqui&lt;/button&gt;
+  &lt;script src="script.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre></div>
+        <div class="panel"><h3>JavaScript — questao4_2/script.js</h3><pre><code>let numeros = [10, 12, 14, 7, 5, 11, 8, 20, 6];
+
+function mostrarValores(){
+  let contador = 0;
+  let valores = "";
+
+  for(let i=0; i&lt;numeros.length; i++){
+    if(numeros[i] &gt; 10){
+      contador = contador + 1;
+    }
+    valores = valores + numeros[i] + "&lt;br&gt;";
+  }
+
+  document.getElementById("valores").innerHTML = valores;
+  document.getElementById("resultado").textContent = "Possui " + contador + " elementos maiores que 10.";
+}</code></pre></div>
         <div class="panel"><h3>Execução</h3><iframe title="Execução: contagem interativa" src="questao4_2/index.html"></iframe></div>
       </div>
     </section>
   </main>
   <footer>Material de apoio — HTML e JavaScript</footer>
-  <script>
-    const arquivos = {
-      'html-exemplo1': 'exemplo1/index.html', 'js-exemplo1': 'exemplo1/script.js',
-      'html-questao4': 'questao4/index.html', 'js-questao4': 'questao4/script.js',
-      'html-questao4_2': 'questao4_2/index.html', 'js-questao4_2': 'questao4_2/script.js'
-    };
-    for (const [id, caminho] of Object.entries(arquivos)) {
-      fetch(caminho).then(resposta => {
-        if (!resposta.ok) throw new Error('Arquivo não encontrado');
-        return resposta.text();
-      }).then(texto => { document.getElementById(id).textContent = texto.trim(); })
-        .catch(() => { document.getElementById(id).textContent = 'Não foi possível carregar o arquivo. Abra esta página por um servidor local para permitir a leitura dos códigos.'; });
-    }
-  </script>
 </body>
 </html>
